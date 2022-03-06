@@ -4,6 +4,9 @@ import React, {useState} from 'react'
 import QuestionCard from './components/QuestionCard'
 import {Question, fetchQuiz, Difficulty, Category} from './API'
 
+//styles
+import {GlobalStyle, Wrapper} from './App.styles'
+
 export type AnswerObject= {
   question: string;
   answer: string;
@@ -11,7 +14,7 @@ export type AnswerObject= {
   correctAnswer: string;
 }
 
-const TOTAL_QUESTIONS= 2;
+const TOTAL_QUESTIONS= 10;
 
 function App() {
   
@@ -22,7 +25,7 @@ function App() {
   const [score, setScore]= useState(0);
   const [gameOver, setGameOver]= useState(true);
 
-  console.log(questions);
+  // console.log(questions);
 
   const startQuiz = async () => {
     setLoading(true);
@@ -40,10 +43,10 @@ function App() {
     if (!gameOver){
       //get user answers
       const answer = e.currentTarget.value;
-      console.log("CURRENT VALUE");
-      console.log(answer);
-      console.log("CORRECT VALUE");
-      console.log(questions[number].correct_answer);
+      // console.log("CURRENT VALUE");
+      // console.log(answer);
+      // console.log("CORRECT VALUE");
+      // console.log(questions[number].correct_answer);
       const correct = questions[number].correct_answer === answer;
       //add score if answer is correct
       if (correct) setScore(prev=> prev+1)
@@ -74,44 +77,49 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>KWEEZ</h1>
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <div>
-          {/* <form>
-          <input placeholder= "number of questions"type="text" id="fname" name="fname" /><br/>
-          <input placeholder= "difficulty" type="text" id="fname" name="fname" /><br/>
-          <label>Choose a category:</label><br/>
-          <select id="category" name="category">
-            <option value="Linux">Linux</option>
-            <option value="Bash">Bash</option>
-            <option value="Uncategorized">Uncategorized</option>
-            <option value="Docker">Docker</option>
-          </select>
-          </form> */}
-          <button className="start" onClick={startQuiz}>
-            Start
-          </button>
-        </div>
-      ): null}
-      {!gameOver ? <p className="score">Score: {score} </p> : null}
-      {loading && <p>Loading Questions...</p>}
-      {!loading && !gameOver && (
-        <QuestionCard
-        qNumber={number + 1}
-        totalQuestions={TOTAL_QUESTIONS}
-        question={questions[number].question}
-        answers={questions[number].answers}
-        userAnswer={userAnswers ? userAnswers[number] : undefined}
-        callback={checkAnswer}
-        />
-      )}
-      {!gameOver && !loading && userAnswers.length === number+ 1 && number!== TOTAL_QUESTIONS - 1 ? (
-       <button className="next" onClick={nextQuestion}>
-        Next Question
-      </button>
-      ): null }
-    </div>
+    <>
+    <GlobalStyle />
+    <Wrapper>
+      <div className="App">
+        <h1>KWEEZ</h1>
+        {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
+          <div>
+            {/* <form>
+            <input placeholder= "number of questions"type="text" id="fname" name="fname" /><br/>
+            <input placeholder= "difficulty" type="text" id="fname" name="fname" /><br/>
+            <label>Choose a category:</label><br/>
+            <select id="category" name="category">
+              <option value="Linux">Linux</option>
+              <option value="Bash">Bash</option>
+              <option value="Uncategorized">Uncategorized</option>
+              <option value="Docker">Docker</option>
+            </select>
+            </form> */}
+            <button className="start" onClick={startQuiz}>
+              Start
+            </button>
+          </div>
+        ): null}
+        {!gameOver ? <p className="score">Score: {score} </p> : null}
+        {loading && <p>Loading Questions...</p>}
+        {!loading && !gameOver && (
+          <QuestionCard
+          qNumber={number + 1}
+          totalQuestions={TOTAL_QUESTIONS}
+          question={questions[number].question}
+          answers={questions[number].answers}
+          userAnswer={userAnswers ? userAnswers[number] : undefined}
+          callback={checkAnswer}
+          />
+        )}
+        {!gameOver && !loading && userAnswers.length === number+ 1 && number!== TOTAL_QUESTIONS - 1 ? (
+         <button className="next" onClick={nextQuestion}>
+          Next Question
+        </button>
+        ): null }
+      </div>
+      </Wrapper>
+    </>
   );
 }
 
