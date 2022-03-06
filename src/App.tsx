@@ -75,11 +75,24 @@ function App() {
 
   return (
     <div className="App">
-      <h1>REACT QUIZ</h1>
+      <h1>KWEEZ</h1>
       {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-        <button className="start" onClick={startQuiz}>
-          Start
-        </button>
+        <div>
+          {/* <form>
+          <input placeholder= "number of questions"type="text" id="fname" name="fname" /><br/>
+          <input placeholder= "difficulty" type="text" id="fname" name="fname" /><br/>
+          <label>Choose a category:</label><br/>
+          <select id="category" name="category">
+            <option value="Linux">Linux</option>
+            <option value="Bash">Bash</option>
+            <option value="Uncategorized">Uncategorized</option>
+            <option value="Docker">Docker</option>
+          </select>
+          </form> */}
+          <button className="start" onClick={startQuiz}>
+            Start
+          </button>
+        </div>
       ): null}
       {!gameOver ? <p className="score">Score: {score} </p> : null}
       {loading && <p>Loading Questions...</p>}
