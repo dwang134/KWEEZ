@@ -80,7 +80,7 @@ function App() {
     <>
     <GlobalStyle />
     <Wrapper>
-        <h1>KWEEZ</h1>
+        <h1>Quitz</h1>
         {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
           <div>
             {/* <form>

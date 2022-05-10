@@ -28,19 +28,26 @@ export const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    justify-content: center;
+    margin-top: 3rem;
+    
     > p{
+        padding-top: 2rem;
         color: #fff;
+        font-size: 30px;
     }
 
     .score {
-        color: #fff;
-        font-size: 2rem;
-        margin: 0;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-shadow: 1px 1px 2px grey;
     }
 
     h1{
         font-family: 'Playfair Display', sans-serif;
+        font-size: 40px;
     }
 
     .start, .next {
